@@ -23,10 +23,10 @@
                     <a class="nav-link" href="#">Home <span class="sr-only"></span></a>
                 </li>
                 <li class="nav-item active">
-                    <a class="nav-link" href="#">Order <span class="sr-only"></span></a>
+                    <a class="nav-link" href="Orders.jsp">Order <span class="sr-only"></span></a>
                 </li>
                 <li class="nav-item active">
-                    <a class="nav-link" href="#">About us <span class="sr-only"></span></a>
+                    <a class="nav-link" href="AboutUs.jsp">About us <span class="sr-only"></span></a>
                 </li>
                 <li class="nav-item active">
                     <a class="nav-link" href="#">Logout<span class="sr-only"></span></a>

@@ -7,11 +7,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
 
-    <title>Document</title>
+    <title>About Us</title>
     <style>
-        *{
-            padding-bottom: 20px;
-        }
+       
         body{
             background-image: url('./Images/palntimage.jpg');
             background-repeat: no-repeat;
@@ -45,6 +43,7 @@
     </style>
 </head>
 <body>
+	<%@include file="Header.jsp"%>
         <h1 class ='plants'>Plants</h1>
         <h6 class = 'content'>Shop where you can buy any plant and we can will deilver you straight way.</h6>
         
@@ -53,6 +52,6 @@
         <button type="button" class="btn btn-success btn"><a href='#' class ='ref'>Review Us </a></button>
 </div>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
-
+<%@include file="footer.jsp"%>
     </body>
 </html>
