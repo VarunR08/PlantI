@@ -12,6 +12,7 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
+import model.Products;
 import model.Registration;
 
 
@@ -26,6 +27,7 @@ public class register extends HttpServlet {
         HttpSession session = request.getSession();
        Registration reg =new Registration(session);
        try {
+    	   
     	    if (request.getParameter("login") != null) {
                String email = request.getParameter("email");
                String pass = request.getParameter("pw");
@@ -41,7 +43,16 @@ public class register extends HttpServlet {
                    RequestDispatcher rd1 = request.getRequestDispatcher("login.jsp");
                    rd1.forward(request, response);
                }
-          } 
+          }else if( request.getParameter("pid")!=null) {
+  	    	int pid=Integer.parseInt(request.getParameter("pid"));
+  	    	Products p=new Products();
+  	    	p=reg.getProduct(pid);
+  	    	if(p!=null) {
+ 	    		session.setAttribute("product", p);
+  				RequestDispatcher rd1=request.getRequestDispatcher("ViewDetails.jsp");
+  				rd1.forward(request, response);
+  	    	}	
+  	    }  
            else if (request.getParameter("logout") != null) {
                session.invalidate();
                RequestDispatcher rd1 = request.getRequestDispatcher("dashboard.jsp");

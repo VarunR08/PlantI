@@ -1,4 +1,5 @@
 <!doctype html>
+<%@page import="model.Products"%>
 <html lang="en">
   <head>
     <meta charset="utf-8">
@@ -60,6 +61,8 @@
   </head>
   <body>
    <%@include file="Header.jsp"%>
+   
+     <% Products p = (Products) session.getAttribute("product"); %> 
     <div class= "main-content">
     <div>
         <img class = "img-tag"src="https://getorganics.in/cdn/shop/files/10_987abbcf-3e21-4327-9bc3-0b93f35d4dee.png?v=1722706258&width=713" alt="loading...">

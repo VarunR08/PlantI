@@ -87,6 +87,37 @@ public class Registration {
 		
 	}
    
+	public Products getProduct( int pid) {
+		PreparedStatement ps=null;
+		ResultSet rs=null;
+		String query="select * from products where p_id=? ";
+		
+       
+            try {
+				ps=con.prepareStatement(query);
+				ps.setInt(1, pid);
+				rs=ps.executeQuery();
+				 while(rs.next())
+		            {
+		              p=new Products();
+		              p.setPid(rs.getInt(1));
+		              p.setP_name(rs.getString(2));
+		              p.setPrice(rs.getLong(3));
+		              p.setP_img(rs.getString(4));
+		              p.setP_des(rs.getString(5));
+		                
+		            }
+		           
+		            
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+           
+           
+		return p;
+		
+	}
     
  
     

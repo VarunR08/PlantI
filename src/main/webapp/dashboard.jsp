@@ -117,7 +117,7 @@
                     <div class="col text-end">
                          <form action="register" method="POST">
                       <div class="form-group">
-            <input type="text" name="animalname" class="form-control" placeholder="search for products" required>
+            <input type="text" name="products" class="form-control" placeholder="search for products" required>
         </div>
         <br>
         <button type="submit" class="btn" name="submit1" style="border:1px solid green; background-color: lightgreen">Search</button>
@@ -144,8 +144,16 @@
                                 <h6 class="card-title"><%=p.getP_name() %></h6>
                                
                                 <p class="price">RS : <%=p.getPrice() %></p>
-                                <button class="btn btn-primary btn-sm">Add to cart</button>
-                                <button class="btn btn-primary btn-sm">View Details</button>
+                                
+                                <!-- <button class="btn btn-primary btn-sm" >View Details</button> -->
+                              <form action="register" method="post">
+                              <button class="btn btn-primary btn-sm">Add to cart</button>
+                    <input type="hidden" class="btn btn-primary btn-sm" name="pid" value="<%=p.getPid() %>" > 
+                    <input type="submit" class="btn btn-primary btn-sm" value="view" > 
+                   
+                   <%-- <input type="hidden"  name="userid" value="<%=p.getPid()%>"/>
+                                   <input type="submit" class="btn btn-primary btn-sm" value="View Details" /> --%>
+                            </form>
                             </div>
                         </div>
                     </div>

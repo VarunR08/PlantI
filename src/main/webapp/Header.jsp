@@ -20,10 +20,13 @@
         <div class="collapse navbar-collapse" id="navbarContent">
             <ul class="navbar-nav ms-auto">
                 <li class="nav-item active">
-                    <a class="nav-link" href="#">Home <span class="sr-only"></span></a>
+                    <a class="nav-link" href="dashboard.jsp">Home <span class="sr-only"></span></a>
                 </li>
                 <li class="nav-item active">
-                    <a class="nav-link" href="#">Order <span class="sr-only"></span></a>
+                    <a class="nav-link" href="OrdersList.jsp">Order <span class="sr-only"></span></a>
+                </li>
+                <li class="nav-item active">
+                    <a class="nav-link" href="#">Add product <span class="sr-only"></span></a>
                 </li>
                 <li class="nav-item active">
                     <a class="nav-link" href="#">About us <span class="sr-only"></span></a>
