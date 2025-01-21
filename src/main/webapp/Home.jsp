@@ -127,7 +127,7 @@
     <section class="hero">
         <div class="hero-content">
             <h2 id="hero-text">Tree Plantation <br> Safe Environment</h2>
-            <a href="#read-more" class="btn">Login</a>
+            <a href="login.jsp" class="btn">Login</a>
         </div>
         <div class="hero-image">
             <img src="https://avatars.githubusercontent.com/u/2621100?v=4" alt="Tree Illustration">

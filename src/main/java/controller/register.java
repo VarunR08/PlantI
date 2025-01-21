@@ -32,7 +32,7 @@ public class register extends HttpServlet {
                String status = reg.login(email, pass);
                if (status.equals("success")) {
 
-                   RequestDispatcher rd1 = request.getRequestDispatcher("index.jsp");
+                   RequestDispatcher rd1 = request.getRequestDispatcher("dashboard.jsp");
 
                    rd1.forward(request, response);
 
@@ -44,7 +44,7 @@ public class register extends HttpServlet {
           } 
            else if (request.getParameter("logout") != null) {
                session.invalidate();
-               RequestDispatcher rd1 = request.getRequestDispatcher("index.jsp");
+               RequestDispatcher rd1 = request.getRequestDispatcher("dashboard.jsp");
                rd1.forward(request, response);
            }
        }catch (Exception e) {

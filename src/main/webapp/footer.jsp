@@ -1,4 +1,4 @@
-<%@page contentType="text/html" pageEncoding="UTF-8"%>
+
 <!DOCTYPE html>
 <html>
     <head>
@@ -21,7 +21,7 @@
     </style>
     <body>
         <div class="footer">
-            <p>Â© 2025 Students | A project by Pentagonaties Pvt. Ltd.</p>
+            <p>© 2025 Students | A project by Pentagonaties Pvt. Ltd.</p>
         </div>
     </body>
 </html>
