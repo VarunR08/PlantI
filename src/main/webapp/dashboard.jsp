@@ -83,16 +83,34 @@
                 <form method="post" action="register" >
                     <h5>Filter</h5>
                     <hr>
-                    <h6>Categories</h6>
+                   <!--  <h6>Categories</h6> -->
                     <div>
-                        <input type="checkbox" id="Fruits" checked> Fruits<br>
+                       <!--  <input type="checkbox" id="Fruits" checked> Fruits<br>
                         <input type="checkbox" id="Vegetables"> Vegetables<br>
-                        <input type="checkbox" id="others"> Others<br>
-                    </div><br>
-                    <h6> Sub-Categories</h6> <div>
-                    <input type="checkbox" id="plants" checked> plants<br>
+                        <input type="checkbox" id="others"> Others<br> -->
+    
+                    <label for="plantCategory" class="form-label">Categories</label>
+          <select class="form-select" id="plantCategory" name="plantCategory" required>
+            <option value="" disabled selected>Select sub Category</option> 
+            <option value="plants">plants</option>
+            <option value="seeds">seeds</option>
+            <option value="Others">Others</option>
+          </select></div><br>
+                    
+                    
+                 <!--    <h6> Sub-Categories</h6> <div> -->
+                    <!-- <input type="checkbox" id="plants" checked> plants<br>
                         <input type="checkbox" id="seeds"> Seeds<br>
-                        <input type="checkbox" id="others"> Others<br>
+                        <input type="checkbox" id="others"> Others<br> -->
+                        <div>
+                        <label for="plantsubCategory" class="form-label">Sub-Categories</label>
+          <select class="form-select" id="plantCategory" name="plantsubCategory" required>
+            <option value="" disabled selected>Select sub Category</option> 
+            <option value="plants">plants</option>
+            <option value="seeds">seeds</option>
+            <option value="Others">Others</option>
+          </select>
+                        
                     </div>
                     
 
