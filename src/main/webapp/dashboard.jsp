@@ -67,6 +67,10 @@
             padding: 8px 15px;
             border-radius: 5px;
         }
+        .cart{
+        display: flex;
+        }
+        
     </style>
 </head>
 <body>
@@ -76,36 +80,32 @@
             <!-- Sidebar -->
             <div class="col-md-3">
                 <div class="filter-section">
+                <form method="post" action="register" >
                     <h5>Filter</h5>
                     <hr>
                     <h6>Categories</h6>
                     <div>
-                        <input type="checkbox" id="gardening"> Gardening<br>
-                        <input type="checkbox" id="plants" checked> Plants<br>
+                        <input type="checkbox" id="Fruits" checked> Fruits<br>
+                        <input type="checkbox" id="Vegetables"> Vegetables<br>
+                        <input type="checkbox" id="others"> Others<br>
+                    </div><br>
+                    <h6> Sub-Categories</h6> <div>
+                    <input type="checkbox" id="plants" checked> plants<br>
                         <input type="checkbox" id="seeds"> Seeds<br>
-                        <input type="checkbox" id="bulbs"> Bulbs<br>
-                        <input type="checkbox" id="planters"> Planters<br>
-                        <input type="checkbox" id="others"> Others
+                        <input type="checkbox" id="others"> Others<br>
                     </div>
+                    
 
                     <h6 class="mt-3">Price range</h6>
                     <div>
                         <input type="tel" class="form-control mb-2" placeholder="Min" min="0">
                         <input type="tel" class="form-control" placeholder="Max" min="0">
                     </div>
-                    <button class="btn btn-success btn-sm mt-2">Set price</button>
+                    <button class="btn btn-success btn-sm mt-2">Set Filter</button>
 
-                    <h6 class="mt-3">Rating</h6>
-                    <div>
-                        <input type="radio" id="4star" name="rating"> 4 star & above<br>
-                    </div>
+</form>
                 </div>
 
-                <div class="discount-banner mt-3">
-                    <h6>GET 30% OFF</h6>
-                    <p>Share your referral code and get a discount!</p>
-                    <button>Share</button>
-                </div>
             </div>
 
             <!-- Main Content --> 
@@ -117,13 +117,57 @@
                     <div class="col text-end">
                          <form action="register" method="POST">
                       <div class="form-group">
-            <input type="text" name="products" class="form-control" placeholder="search for products" required>
+            <input type="text" name="productname" class="form-control" placeholder="search for products" required>
         </div>
         <br>
         <button type="submit" class="btn" name="submit1" style="border:1px solid green; background-color: lightgreen">Search</button>
     </form>
                     </div>
                 </div>
+
+
+<% 
+    List<Products> products = (List<Products>) session.getAttribute("products");
+%>
+
+<div class="row">
+    <% 
+        if (products != null && !products.isEmpty()) {
+            for (Products p : products) {
+    %>
+<div class="col-md-4">
+        <div class="card product-card">
+            <img src="<%= p.getP_img() %>" class="card-img-top" alt="<%= p.getP_name() %>">
+            <div class="card-body">
+                <h6 class="card-title"><%= p.getP_name() %></h6>
+                <p class="price">RS : <%= p.getPrice() %></p>
+                 <div class="cart">
+                               <form action="register" method="post">
+                                <button class="btn btn-primary btn-sm" style="margin-right: 20px">Add to cart</button>
+                               </form>
+                              <form action="register" method="post">
+                             
+                    <input type="hidden" class="btn btn-primary btn-sm" name="pid" value="<%=p.getPid() %>" > 
+                    <input type="submit" class="btn btn-primary btn-sm" value="view Details" > 
+                   
+                   <%-- <input type="hidden"  name="userid" value="<%=p.getPid()%>"/>
+                                   <input type="submit" class="btn btn-primary btn-sm" value="View Details" /> --%>
+                            </form></div>
+            </div>
+        </div>
+    </div>
+    <% 
+            }
+        } else { 
+    %>
+    <div class="col-12">
+        <p>No products found for your search.</p>
+    </div>
+    <% 
+        }
+    %>
+</div>
+
 
 
   <%   Registration r=new Registration(session);
@@ -145,15 +189,18 @@
                                
                                 <p class="price">RS : <%=p.getPrice() %></p>
                                 
-                                <!-- <button class="btn btn-primary btn-sm" >View Details</button> -->
+                                <div class="cart">
+                               <form action="register" method="post">
+                                <button class="btn btn-primary btn-sm" style="margin-right: 20px">Add to cart</button>
+                               </form>
                               <form action="register" method="post">
-                              <button class="btn btn-primary btn-sm">Add to cart</button>
+                             
                     <input type="hidden" class="btn btn-primary btn-sm" name="pid" value="<%=p.getPid() %>" > 
-                    <input type="submit" class="btn btn-primary btn-sm" value="view" > 
+                    <input type="submit" class="btn btn-primary btn-sm" value="view Details" > 
                    
                    <%-- <input type="hidden"  name="userid" value="<%=p.getPid()%>"/>
                                    <input type="submit" class="btn btn-primary btn-sm" value="View Details" /> --%>
-                            </form>
+                            </form></div>
                             </div>
                         </div>
                     </div>

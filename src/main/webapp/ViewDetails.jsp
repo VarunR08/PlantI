@@ -63,15 +63,16 @@
    <%@include file="Header.jsp"%>
    
      <% Products p = (Products) session.getAttribute("product"); %> 
+     
     <div class= "main-content">
     <div>
-        <img class = "img-tag"src="https://getorganics.in/cdn/shop/files/10_987abbcf-3e21-4327-9bc3-0b93f35d4dee.png?v=1722706258&width=713" alt="loading...">
+        <img class = "img-tag"src="<%=p.getP_img() %>" alt="loading...">
     </div>
 
     <div>
-        <p class = "plant-content"><strong>Broken Heart (Monstera adansonii) - Small</strong></p>
-        <strong><p class = "plant-id">ID: 68897</p></strong>
-        <p class="plant-price"> &#8377: 10000.00</p>
+        <p class = "plant-content"><strong><%=p.getP_name() %></strong></p>
+        <strong><p class = "plant-id"><%=p.getPid() %></p></strong>
+        <p class="plant-price"> &#8377: <%=p.getPrice() %></p>
         <p class="availability">In Stock</p>
         <p class="delivery-info">Free shipping on orders over &#8377; 1000!</p>
             <div class="buttons">
@@ -79,7 +80,7 @@
                 <a href="#"><button class="btn btn-primary" type="submit">Buy Now</button></a>
         </div>
         <br>
-        <label class="desc"> Description:</label>
+        <label class="desc"> Description: <%=p.getP_des() %></label>
         
         </div>
     </div>

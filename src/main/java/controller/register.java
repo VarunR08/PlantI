@@ -4,6 +4,7 @@ package controller;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.List;
 
 import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
@@ -27,7 +28,6 @@ public class register extends HttpServlet {
         HttpSession session = request.getSession();
        Registration reg =new Registration(session);
        try {
-    	   
     	    if (request.getParameter("login") != null) {
                String email = request.getParameter("email");
                String pass = request.getParameter("pw");
@@ -43,16 +43,51 @@ public class register extends HttpServlet {
                    RequestDispatcher rd1 = request.getRequestDispatcher("login.jsp");
                    rd1.forward(request, response);
                }
-          }else if( request.getParameter("pid")!=null) {
-  	    	int pid=Integer.parseInt(request.getParameter("pid"));
-  	    	Products p=new Products();
-  	    	p=reg.getProduct(pid);
-  	    	if(p!=null) {
- 	    		session.setAttribute("product", p);
-  				RequestDispatcher rd1=request.getRequestDispatcher("ViewDetails.jsp");
-  				rd1.forward(request, response);
-  	    	}	
-  	    }  
+          } 
+    	  else if( request.getParameter("pid")!=null) {
+    	  int pid=Integer.parseInt(request.getParameter("pid"));
+    	  Products p=new Products();
+    	  p=reg.getProduct(pid);
+    	  if(p!=null) {
+    	  	session.setAttribute("product", p);
+    	  	RequestDispatcher rd1=request.getRequestDispatcher("ViewDetails.jsp");
+    	  	rd1.forward(request, response);
+    	  }	
+    	  }else if(request.getParameter("addproduct")!=null){
+    		  String pname= request.getParameter("pname");
+    		  long price=Long.parseLong(request.getParameter("price"));
+    		  String url=request.getParameter("url");
+    		  String desp=request.getParameter("desp");
+    		  String category=request.getParameter("plantCategory");
+    		  String subcategory=request.getParameter("plantsubCategory");
+    		  String status=reg.addProduct(pname,url,desp,category,subcategory,price);
+    		  
+    		  if (status.equals("success")) {
+    			  request.setAttribute("status", "Product Added Successfully");
+                  RequestDispatcher rd1 = request.getRequestDispatcher("AddProduct.jsp");
+                  rd1.forward(request, response);
+
+              } else if (status.equals("failure")) {
+                  request.setAttribute("Status", "failed to add");
+                  RequestDispatcher rd1 = request.getRequestDispatcher("AddProduct.jsp");
+                  rd1.forward(request, response);
+              }
+    		  
+    	  }
+    	  else if(request.getParameter("productname") != null)
+      	    {
+      	    	String productn=request.getParameter("productname");
+      	    	List<Products> statues=reg.searchProducts(productn);
+      	    	if(statues!=null) {
+      	    		session.setAttribute("products", statues);
+      	    		 RequestDispatcher rd1 = request.getRequestDispatcher("dashboard.jsp");
+      	    		 rd1.forward(request, response);
+      	    	}}
+               else if (request.getParameter("logout") != null) {
+                   session.invalidate();
+                   RequestDispatcher rd1 = request.getRequestDispatcher("dashboard.jsp");
+                   rd1.forward(request, response);
+               }
            else if (request.getParameter("logout") != null) {
                session.invalidate();
                RequestDispatcher rd1 = request.getRequestDispatcher("dashboard.jsp");
@@ -85,3 +120,11 @@ public class register extends HttpServlet {
     }// </editor-fold>
 
 }
+
+
+
+
+
+
+
+

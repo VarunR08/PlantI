@@ -26,10 +26,10 @@
                     <a class="nav-link" href="OrdersList.jsp">Order <span class="sr-only"></span></a>
                 </li>
                  <li class="nav-item active">
-                    <a class="nav-link" href="#">Add Product <span class="sr-only"></span></a>
+                    <a class="nav-link" href="AddProduct.jsp">Add Product <span class="sr-only"></span></a>
                 </li>
                 <li class="nav-item active">
-                    <a class="nav-link" href="Aboutus.jsp">About us <span class="sr-only"></span></a>
+                    <a class="nav-link" href="AboutUs.jsp">About us <span class="sr-only"></span></a>
                 </li>
                 <li class="nav-item active">
                     <a class="nav-link" href="#">Logout<span class="sr-only"></span></a>
