@@ -54,6 +54,9 @@
     
      padding-left: 125px;
 }
+.cart{
+        display: flex;
+        }
 
 
     </Style>
@@ -75,10 +78,18 @@
         <p class="plant-price"> &#8377: <%=p.getPrice() %></p>
         <p class="availability">In Stock</p>
         <p class="delivery-info">Free shipping on orders over &#8377; 1000!</p>
-            <div class="buttons">
-                <a href="#"><button class="btn btn-primary" type="submit">Add to Cart</button></a>
-                <a href="#"><button class="btn btn-primary" type="submit">Buy Now</button></a>
-        </div>
+
+        
+        <div class="cart buttons">
+                               <form action="register" method="post">
+                                <button class="btn btn-primary" style="margin-right: 20px">Add to cart</button>
+                               </form>
+                              <form action="register" method="post">
+                             
+                    <input type="hidden" class="btn btn-primary" name="book" value="<%=p.getPid() %>" > 
+                    <input type="submit" class="btn btn-primary" value="Buy Now" > 
+                   </form>
+                            </div>
         <br>
         <label class="desc"> Description: <%=p.getP_des() %></label>
         

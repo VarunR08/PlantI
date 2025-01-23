@@ -140,6 +140,7 @@
         <br>
         <button type="submit" class="btn" name="submit1" style="border:1px solid green; background-color: lightgreen">Search</button>
     </form>
+   
                     </div>
                 </div>
 
@@ -167,10 +168,10 @@
                              
                     <input type="hidden" class="btn btn-primary btn-sm" name="pid" value="<%=p.getPid() %>" > 
                     <input type="submit" class="btn btn-primary btn-sm" value="view Details" > 
-                   
+                   </form>
                    <%-- <input type="hidden"  name="userid" value="<%=p.getPid()%>"/>
                                    <input type="submit" class="btn btn-primary btn-sm" value="View Details" /> --%>
-                            </form></div>
+                            </div>
             </div>
         </div>
     </div>

@@ -9,6 +9,9 @@ import java.util.List;
 
 
 
+
+
+
 public class Registration {
 
     private Connection con;
@@ -178,8 +181,125 @@ public class Registration {
 		
 	}
 
-    
+	public User getInfo() {
+        Statement st = null;
+        ResultSet rs = null;
+        User u = null;
+        try {
+            st = con.createStatement();
+            rs = st.executeQuery("select * from users where id= '" + se.getAttribute("id") + "'");
+            boolean b = rs.next();
+            if (b == true) {
+                u = new User();
+                u.setName(rs.getString("name"));
+                u.setPhone(rs.getLong("phone"));
+                u.setMailid(rs.getString("mailid"));
+            } else {
+                u = null;
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return u;
+    }
+	
+	 public String orderdetails(String order_address, String order_city, String order_state, double tcost) {
+		 Statement st = null;
+		 ResultSet rs = null;
+	        String status = "", c_id = "";
+	        int order_id = 0;
+	        try {
+	            
+	            PreparedStatement ps;
+	            st = (Statement) con.createStatement();
+	            ps = (PreparedStatement) con.prepareStatement("INSERT INTO  `leafnow`.`order` VALUES (0, ?, ?, ?, '4', ?, '" + se.getAttribute("uname") + "', 'pending', now(), '" + se.getAttribute("id") + "');");
+	            ps.setString(1, order_address);
+	            ps.setString(2, order_city);
+	            ps.setString(3, order_state);
+	            ps.setDouble(4, tcost);
+	            int a = ps.executeUpdate();
+	            if (a > 0) {
+	                status = "success";
+	            } else {
+	                status = "failure";
+	            }                                                                                          //last order of my id with status=ordered,
+	            String qry1 = "select order_id,c_id from order where uid=" + se.getAttribute("id") + " and status='ordered' order by order_id desc limit 1;";
+	            rs = st.executeQuery(qry1);
+	            while (rs.next()) {
+	                order_id = rs.getInt("order_id");
+	                c_id = rs.getString("c_id");
+	            }
+	            String qry = "update cart set status='ordered',order_id='" + order_id + "' where c_id in (" + c_id + ") and uid=" + se.getAttribute("id") + " and status='pending';";
+	            int b = st.executeUpdate(qry);
+	        } catch (Exception e) {
+	            e.printStackTrace();
+	        }
+	        return status;
+	   }
+	 public int deleteorder(int oid) {
+	        int status = 0;
+	        try {
+	            Statement st = null;
+	            st = (Statement) con.createStatement();
+	            String qry = "update order set status='Canceled' where order_id='" + oid + "'";
+	            status = st.executeUpdate(qry);
+	            String qry1 = "update cart set status='Canceled' where order_id='" + oid + "'";
+	            status = st.executeUpdate(qry1);
+	        } catch (Exception e) {
+	            e.printStackTrace();
+	        }
+	        return status;
+	    }
+
+	 public ArrayList<Order> getorderinfo() {
+		   Statement st = null;
+		   ResultSet rs = null;
+	        ArrayList<Order> al = new ArrayList<Order>();
+	        try {
+	            st = con.createStatement();
+	            String qry = "select *  from order where uid='" + se.getAttribute("id") + "';";
+	            rs = st.executeQuery(qry);
+	            while (rs.next()) {
+	                Order p = new Order();
+	                p.setoid(rs.getInt("order_id"));
+//	                p.setc_cost(rs.getString("c_cost"));
+//	                p.setc_id(rs.getString("c_id"));
+	                p.setstatus(rs.getString("status"));
+	                al.add(p);
+	            }
+	        } catch (Exception e) {
+	            e.printStackTrace();
+	        }
+	        return al;
+	    }
  
     
+	 // sudarhsan
+	 public boolean Review(String name,String review,String ratings) {
+			PreparedStatement ps = null;
+			String query = "INSERT INTO REVIEW VALUES (?,?,?)";
+			int res;
+			try {
+				ps = con.prepareStatement(query);
+				ps.setString(1, name);
+				ps.setString(2, review);
+				ps.setString(3, ratings);
+				res = ps.executeUpdate();
+				
+				if(res>0) {
+					return true;
+				}
+				
+				
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			
+			
+			return false;
+			
+		}
 }
 

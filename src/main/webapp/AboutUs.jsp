@@ -49,7 +49,7 @@
         
         <div class=" button-div">
         <button type="button" class="btn btn-success btn"><a href='#' class ='ref'>Explore Plants</a></button>
-        <button type="button" class="btn btn-success btn"><a href='#' class ='ref'>Review Us </a></button>
+        <button type="button" class="btn btn-success btn"><a href='Review.jsp' class ='ref'>Review Us </a></button>
 </div>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
 <%@include file="footer.jsp"%>

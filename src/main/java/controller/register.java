@@ -53,7 +53,20 @@ public class register extends HttpServlet {
     	  	RequestDispatcher rd1=request.getRequestDispatcher("ViewDetails.jsp");
     	  	rd1.forward(request, response);
     	  }	
-    	  }else if(request.getParameter("addproduct")!=null){
+    	  }else if( request.getParameter("book")!=null) {
+        	  int pid=Integer.parseInt(request.getParameter("book"));
+        	  Products p=new Products();
+        	  p=reg.getProduct(pid);
+
+        	  if(p!=null) {
+        	  	session.setAttribute("Book", p);
+ 
+        	  	RequestDispatcher rd1=request.getRequestDispatcher("Book.jsp");
+        	  	rd1.forward(request, response);
+        	  }	
+        	  }
+    	  
+    	  else if(request.getParameter("addproduct")!=null){
     		  String pname= request.getParameter("pname");
     		  long price=Long.parseLong(request.getParameter("price"));
     		  String url=request.getParameter("url");
