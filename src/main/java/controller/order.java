@@ -2,6 +2,7 @@ package controller;
 
 
 
+
 import java.io.IOException;
 
 
@@ -25,7 +26,7 @@ public class order extends HttpServlet {
         HttpSession se1 = request.getSession();
         Registration reg = new Registration(se1);
         try {
-            if (request.getParameter("tcost") != null) {
+            if (request.getParameter("submit") != null) {
                 String order_address = request.getParameter("address");
                 String order_city = request.getParameter("city");
                 String order_state = request.getParameter("state");

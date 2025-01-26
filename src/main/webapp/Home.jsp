@@ -111,17 +111,12 @@
         </div>
         <nav>
             <ul>
-                <li><a href="#history">About Our History</a></li>
-                <li><a href="#features">Features</a></li>
+                <li><a href="History.jsp">About Our History</a></li>
                 <li><a href="#plantation">Our Plantation</a></li>
                 <li><a href="#contact">Contact</a></li>
             </ul>
         </nav>
-        <div class="icons">
-            <span>🛒</span>
-            <span>📞</span>
-            <span>💬</span>
-        </div>
+        
     </header>
 
     <section class="hero">

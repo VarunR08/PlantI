@@ -32,6 +32,9 @@
                     <a class="nav-link" href="AboutUs.jsp">About us <span class="sr-only"></span></a>
                 </li>
                 <li class="nav-item active">
+                    <a class="nav-link" href="myorder.jsp">My Orders <span class="sr-only"></span></a>
+                </li>
+                <li class="nav-item active">
                     <a class="nav-link" href="#">Logout<span class="sr-only"></span></a>
                 </li>
 

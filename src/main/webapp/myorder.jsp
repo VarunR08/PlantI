@@ -87,8 +87,7 @@
     </style>
 </head>
 <body>
-<h1>hello</h1>
-   <%--  <%@include file="Header.jsp" %>
+    <%@include file="Header.jsp" %>
     <% if (session.getAttribute("uname") != null) {%>
     <div class="container-xl">
         <div class="table-responsive">
@@ -108,17 +107,24 @@
                     </thead>
                     <tbody>
                         <%
-                        
                             Registration s1 = new Registration(session);
                             ArrayList<Order> ar = s1.getorderinfo();
                             Iterator<Order> itr = ar.iterator();
                             while (itr.hasNext()) {
                                 Order s = itr.next();%> 
-                       
+                        <%
+                                Registration s2 = new Registration(session);
+    
+                                ArrayList<Order> ar1 = s2.getorderinfocart(s.getoid());
+                                Iterator<Order> itr1 = ar1.iterator();
+                                while (itr1.hasNext()) {
+                                    Order s3 = itr1.next();
+                                   /*  int tcost=Integer.parseInt(s3.getc_cost())*Integer.parseInt(s3.getQuantity()); */
+                        %>  
                         <tr> 
-                            <td><img src="Images/<%=s.getp_image()%>" class="product-image" alt="<%=s.getc_name()%>"></td>
-                            <td><%=s.getc_name()%></td>
-                            <td>&#8377 </td>
+                            <td><img src="<%=s3.getp_image() %>" class="product-image" alt="<%=s3.getc_name()%>"></td>
+                            <td><%=s3.getc_name()%></td>
+                            <td>&#8377 <%=s.getc_cost()%></td>
                             <td><%=s.getstatus()%></td>
                             <td>
                                 <%if (s.getstatus().equals("ordered")) {%>
@@ -135,7 +141,7 @@
             </div>
         </div>        
     </div>
-    <br><br><br> --%>
-   
+    <br><br><br>
+     <%}%> 
 </body>
 </html>

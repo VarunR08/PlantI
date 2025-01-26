@@ -87,6 +87,28 @@ public class register extends HttpServlet {
               }
     		  
     	  }
+    	    
+    	  else  if(request.getParameter("filter") !=null) {
+  	    	
+  	    	String plantcat =request.getParameter("plantCategory");
+  	    	String plantsubcat=request.getParameter("plantsubCategory");
+  	    	double min=Double.parseDouble(request.getParameter("min"));
+  	    	double max=Double.parseDouble(request.getParameter("max"));
+  	    
+  	    	
+  	    
+  	    	
+  	    	List<Products> Filter=reg.ApplyFilter(plantcat, plantsubcat, min, max);
+  	    	if(Filter!=null) {
+    	    		session.setAttribute("filter1", Filter);
+    	    		 RequestDispatcher rd1 = request.getRequestDispatcher("dashboard.jsp");
+    	    		 rd1.forward(request, response);
+    	    	}
+  	    	
+  	    	
+  	    }
+    	    
+    	    
     	  else if(request.getParameter("productname") != null)
       	    {
       	    	String productn=request.getParameter("productname");
@@ -95,7 +117,9 @@ public class register extends HttpServlet {
       	    		session.setAttribute("products", statues);
       	    		 RequestDispatcher rd1 = request.getRequestDispatcher("dashboard.jsp");
       	    		 rd1.forward(request, response);
-      	    	}}
+      	    	}
+      	    	}
+    	    
                else if (request.getParameter("logout") != null) {
                    session.invalidate();
                    RequestDispatcher rd1 = request.getRequestDispatcher("dashboard.jsp");

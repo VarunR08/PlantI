@@ -91,9 +91,9 @@
     
                     <label for="plantCategory" class="form-label">Categories</label>
           <select class="form-select" id="plantCategory" name="plantCategory" required>
-            <option value="" disabled selected>Select sub Category</option> 
-            <option value="plants">plants</option>
-            <option value="seeds">seeds</option>
+            <option value="" disabled selected>Select Category</option> 
+            <option value="Fruits">Fruits</option>
+            <option value="Vegetables">Vegetables</option>
             <option value="Others">Others</option>
           </select></div><br>
                     
@@ -104,7 +104,7 @@
                         <input type="checkbox" id="others"> Others<br> -->
                         <div>
                         <label for="plantsubCategory" class="form-label">Sub-Categories</label>
-          <select class="form-select" id="plantCategory" name="plantsubCategory" required>
+          <select class="form-select" id="plantsubCategory" name="plantsubCategory" required>
             <option value="" disabled selected>Select sub Category</option> 
             <option value="plants">plants</option>
             <option value="seeds">seeds</option>
@@ -116,10 +116,10 @@
 
                     <h6 class="mt-3">Price range</h6>
                     <div>
-                        <input type="tel" class="form-control mb-2" placeholder="Min" min="0">
-                        <input type="tel" class="form-control" placeholder="Max" min="0">
+                        <input type="tel" class="form-control mb-2" placeholder="Min"  name="min">
+                        <input type="tel" class="form-control" placeholder="Max"  name="max">
                     </div>
-                    <button class="btn btn-success btn-sm mt-2">Set Filter</button>
+                    <button class="btn btn-success btn-sm mt-2" name="filter">Set Filter</button>
 
 </form>
                 </div>
@@ -145,14 +145,17 @@
                 </div>
 
 
+
 <% 
-    List<Products> products = (List<Products>) session.getAttribute("products");
+List<Products> products = (List<Products>) session.getAttribute("filter1");
+
 %>
 
 <div class="row">
     <% 
-        if (products != null && !products.isEmpty()) {
+        if (products != null ) {
             for (Products p : products) {
+            	
     %>
 <div class="col-md-4">
         <div class="card product-card">
@@ -161,13 +164,64 @@
                 <h6 class="card-title"><%= p.getP_name() %></h6>
                 <p class="price">RS : <%= p.getPrice() %></p>
                  <div class="cart">
-                               <form action="register" method="post">
-                                <button class="btn btn-primary btn-sm" style="margin-right: 20px">Add to cart</button>
-                               </form>
+                                              <form action="addtocart" method="post">
+ <input type="hidden" name="p_id" value="<%= p.getPid() %>">
+    <input type="number" name="qty" value="1" min="1" style="width:80%" >
+
+    <button type="submit" class="btn btn-primary" style="margin-top: 5%">Add to Cart</button>
+</form>
                               <form action="register" method="post">
                              
-                    <input type="hidden" class="btn btn-primary btn-sm" name="pid" value="<%=p.getPid() %>" > 
-                    <input type="submit" class="btn btn-primary btn-sm" value="view Details" > 
+                    <input type="hidden" class="btn btn-primary " name="pid" value="<%=p.getPid() %>" > 
+                    <input type="submit" class="btn btn-primary " value="view Details" style="margin-top: 35%"> 
+                   
+                   <%-- <input type="hidden"  name="userid" value="<%=p.getPid()%>"/>
+                                   <input type="submit" class="btn btn-primary btn-sm" value="View Details" /> --%>
+                            </form></div>
+            </div>
+        </div>
+    </div>
+    <% 
+            }
+        } 
+    %>
+   
+</div>
+
+
+
+
+
+
+
+
+
+<% 
+    List<Products> pro = (List<Products>) session.getAttribute("products");
+%>
+
+<div class="row">
+    <% 
+        if (pro != null ) {
+            for (Products p : pro) {
+    %>
+<div class="col-md-4">
+        <div class="card product-card">
+            <img src="<%= p.getP_img() %>" class="card-img-top" alt="<%= p.getP_name() %>">
+            <div class="card-body">
+                <h6 class="card-title"><%= p.getP_name() %></h6>
+                <p class="price">RS : <%= p.getPrice() %></p>
+                 <div class="cart">
+                                              <form action="addtocart" method="post">
+   <input type="hidden" name="p_id" value="<%= p.getPid() %>">
+    <input type="number" name="qty" value="1" min="1" style="width:80%" >
+
+    <button type="submit" class="btn btn-primary" style="margin-top: 5%">Add to Cart</button>
+</form>
+                              <form action="register" method="post">
+                             
+                    <input type="hidden" class="btn btn-primary " name="pid" value="<%=p.getPid() %>" > 
+                    <input type="submit" class="btn btn-primary " value="view Details" style="margin-top: 35%">  
                    </form>
                    <%-- <input type="hidden"  name="userid" value="<%=p.getPid()%>"/>
                                    <input type="submit" class="btn btn-primary btn-sm" value="View Details" /> --%>
@@ -177,14 +231,9 @@
     </div>
     <% 
             }
-        } else { 
+        }  
     %>
-    <div class="col-12">
-        <p>No products found for your search.</p>
-    </div>
-    <% 
-        }
-    %>
+    
 </div>
 
 
@@ -209,13 +258,16 @@
                                 <p class="price">RS : <%=p.getPrice() %></p>
                                 
                                 <div class="cart">
-                               <form action="register" method="post">
-                                <button class="btn btn-primary btn-sm" style="margin-right: 20px">Add to cart</button>
-                               </form>
+                                              <form action="addtocart" method="post">
+    <input type="hidden" name="p_id" value="<%= p.getPid() %>">
+    <input type="number" name="qty" value="1" min="1" style="width:80%" >
+
+    <button type="submit" class="btn btn-primary" style="margin-top: 5%">Add to Cart</button>
+</form>
                               <form action="register" method="post">
                              
-                    <input type="hidden" class="btn btn-primary btn-sm" name="pid" value="<%=p.getPid() %>" > 
-                    <input type="submit" class="btn btn-primary btn-sm" value="view Details" > 
+                    <input type="hidden" class="btn btn-primary " name="pid" value="<%=p.getPid() %>" > 
+                    <input type="submit" class="btn btn-primary " value="view Details" style="margin-top: 35%"> 
                    
                    <%-- <input type="hidden"  name="userid" value="<%=p.getPid()%>"/>
                                    <input type="submit" class="btn btn-primary btn-sm" value="View Details" /> --%>

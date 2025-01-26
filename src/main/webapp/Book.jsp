@@ -132,6 +132,7 @@
                 <input type="text" id="state" name="state" class="form-control" placeholder="Enter state" required>
             </div>
             <input type="hidden" name="tcost" value="<%= tcost %>">
+            <input type="hidden" name="pid" value="<%= p.getPid() %>">
             <button type="submit" class="btn btn-custom w-100" style="background-color: lightgreen"><b>Confirm Order</b></button>
             
             <br><br><br>

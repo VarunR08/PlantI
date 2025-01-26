@@ -81,13 +81,17 @@
 
         
         <div class="cart buttons">
-                               <form action="register" method="post">
-                                <button class="btn btn-primary" style="margin-right: 20px">Add to cart</button>
-                               </form>
+                                                             <form action="addtocart" method="post">
+    <input type="hidden" name="p_id" value="<%= p.getPid() %>">
+    <input type="number" name="qty" value="1" min="1" style="width:80%" >
+    <br>
+
+    <button type="submit" class="btn btn-primary" style="margin-top: 5%">Add to Cart</button>
+</form>
                               <form action="register" method="post">
                              
                     <input type="hidden" class="btn btn-primary" name="book" value="<%=p.getPid() %>" > 
-                    <input type="submit" class="btn btn-primary" value="Buy Now" > 
+                    <input type="submit" class="btn btn-primary" value="Buy Now"  style="margin-top: 45%"> 
                    </form>
                             </div>
         <br>
