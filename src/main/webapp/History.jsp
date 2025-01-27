@@ -31,8 +31,8 @@
             <h1 class="text-white">PlantI</h1>
             <nav>
                 <a href="Home.jsp" class="text-white text-decoration-none mx-2">Home</a>
-                <a href="#" class="text-white text-decoration-none mx-2">Services</a>
-                <a href="#" class="text-white text-decoration-none mx-2">Contact</a>
+                <a href="contact.jsp" class="text-white text-decoration-none mx-2">Contact</a>
+                <a href="login.jsp" class="text-white text-decoration-none mx-2">Login</a>
             </nav>
         </div>
     </header>

@@ -363,6 +363,32 @@ public class Registration {
 		}
 	 
 	 
+	 public ArrayList<Reviews> getreviewinfo(String uname){
+		   Statement st = null;
+		   ResultSet rs = null;
+		   ArrayList<Reviews> al = new ArrayList<Reviews>();
+		   try {
+			st=con.createStatement();
+			String query="SELECT * FROM REVIEW where uname="+ uname+" ;";
+			rs=st.executeQuery(query);
+			while(rs.next()) {
+				Reviews re=new Reviews();
+				
+				re.setUname(rs.getString(1));
+				re.setReview(rs.getString(2));
+				re.setRating(rs.getString(3));
+				al.add(re);
+			}
+			
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return al;
+		   
+	   }
+	 
 	 //kavana
 	 
 	 public String addtocart(int p_id, int qty) {
@@ -425,7 +451,7 @@ public class Registration {
 		        }
 		        return status;
 		    }
-		 public ArrayList<Cart> getcartinfo() {
+		 public List<Cart> getcartinfo() {
 			 Statement st = null;
 			 ResultSet rs = null;
 		        ArrayList<Cart> al = new ArrayList<Cart>();

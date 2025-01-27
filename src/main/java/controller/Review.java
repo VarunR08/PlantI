@@ -40,7 +40,7 @@ public class Review extends HttpServlet{
 		}else {
 			req.setAttribute("status", "Please fill out all the details...");
 		}	
-			RequestDispatcher rd = req.getRequestDispatcher("Review.jsp");
+			RequestDispatcher rd = req.getRequestDispatcher("Aboutus.jsp");
 			rd.forward(req, resp);
 	}
 

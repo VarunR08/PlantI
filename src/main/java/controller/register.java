@@ -122,12 +122,12 @@ public class register extends HttpServlet {
     	    
                else if (request.getParameter("logout") != null) {
                    session.invalidate();
-                   RequestDispatcher rd1 = request.getRequestDispatcher("dashboard.jsp");
+                   RequestDispatcher rd1 = request.getRequestDispatcher("login.jsp");
                    rd1.forward(request, response);
                }
            else if (request.getParameter("logout") != null) {
                session.invalidate();
-               RequestDispatcher rd1 = request.getRequestDispatcher("dashboard.jsp");
+               RequestDispatcher rd1 = request.getRequestDispatcher("login.jsp");
                rd1.forward(request, response);
            }
        }catch (Exception e) {

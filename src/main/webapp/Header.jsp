@@ -35,7 +35,7 @@
                     <a class="nav-link" href="myorder.jsp">My Orders <span class="sr-only"></span></a>
                 </li>
                 <li class="nav-item active">
-                    <a class="nav-link" href="#">Logout<span class="sr-only"></span></a>
+                    <a class="nav-link" href="register?logout=yes">Logout<span class="sr-only"></span></a>
                 </li>
 
             </ul>

@@ -112,8 +112,8 @@
         <nav>
             <ul>
                 <li><a href="History.jsp">About Our History</a></li>
-                <li><a href="#plantation">Our Plantation</a></li>
-                <li><a href="#contact">Contact</a></li>
+                <li><a href="contact.jsp">Contact</a></li>
+                <li><a href="login.jsp">Login</a></li>
             </ul>
         </nav>
         

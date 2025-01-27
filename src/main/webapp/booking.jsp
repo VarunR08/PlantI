@@ -1,7 +1,8 @@
 
+<%@page import="java.util.Iterator"%>
 <%@page import="model.Cart"%>
 <%@page import="model.Registration"%>
-<%@page import="java.util.ArrayList"%>
+<%@page import="java.util.List"%>
 <%@page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html>
 <html lang="en">
@@ -173,18 +174,26 @@
                 String productId = request.getParameter("p_id");
                 Registration s1 = new Registration(session);
                 int tcost = 0;
-                ArrayList<Cart> cartItems = s1.getcartinfo();
+                List<Cart> cartItems = s1.getcartinfo();
 
                 if (!cartItems.isEmpty()) {
-                    for (Cart item : cartItems) {
-                        tcost += item.getC_cost();
+                	
+                	/*   for (Cart item : cartItems) {
+                        tcost += item.getC_cost(); */
+                        
+                        Iterator<Cart> itr=cartItems.iterator();
+                        
+                        while(itr.hasNext()){
+                        	
+                        Cart item=itr.next();
+                        tcost+=item.getC_cost()*item.getQuantity();
                 %>
                         <div class="cart-item">
                             <img src="<%=item.getC_img() %>" class="cart-image" alt="<%=item.getC_name() %>">
                             <div class="cart-details">
-                                <label class="cart-name">Product Name: <%= item.getC_name() %></label>
+                                <label class="cart-name">Product Name: <%=item.getC_name() %></label>
                                 <label class="cart-quantity">Quantity : <%=item.getQuantity() %></label>
-                                <label class="cart-cost">Product Cost: &#8377; <%= item.getC_cost() %></label>
+                                <label class="cart-cost">Product Cost: &#8377; <%=item.getC_cost() %></label>
                             </div>
                         </div>
                         <hr>

@@ -45,7 +45,7 @@ public class RemoveFromCart extends HttpServlet {
         
         Registration reg = new Registration(session);
         int c=Integer.parseInt(productId);
-
+        int status = reg.deletecart(c);
 
         // Retrieve the cart from session
         @SuppressWarnings("unchecked")
@@ -54,7 +54,7 @@ public class RemoveFromCart extends HttpServlet {
         if (cartList != null && productId != null) {
             // Find and remove the product from the cart
             cartList.removeIf(item -> Integer.toString(item.getC_id()).equals(productId));
-            int status = reg.deletecart(c);
+           
             session.setAttribute("cartList", cartList);
         }
 
