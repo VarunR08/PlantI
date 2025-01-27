@@ -76,6 +76,7 @@
                 <a href="Home.jsp" class="text-white text-decoration-none mx-2">Home</a>
                 <a href="contact.jsp" class="text-white text-decoration-none mx-2">Contact</a>
                 <a href="History.jsp" class="text-white text-decoration-none mx-2">About Our History</a>
+                <a href="Dealersignup.jsp" class="text-white text-decoration-none mx-2">Dealer Login</a>
             </nav>
         </div>
     </header>

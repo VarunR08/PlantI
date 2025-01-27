@@ -475,5 +475,45 @@ public class Registration {
 		    }
 
 	 
+		 public String dsignup(String name,String phone,String email,String address,String pancard,String sname,String cat,String scat,String gst,String password) {
+				
+			 PreparedStatement ps=null;
+				String status="";
+				String query="SELECT * FROM dealer WHERE dphone='"+phone + "'or demailid='"+email+"';";
+				try {
+					Statement st = null;
+					ResultSet rs = null;
+					st=con.createStatement();
+					rs=st.executeQuery(query);
+					boolean b = rs.next();
+					if(b) {
+						status="existed";
+					}
+					else {
+						ps=con.prepareStatement("insert into dealer values(0,?,?,?,?,?,?,?,?,?,?)");
+						ps.setString(1, name);
+						ps.setString(2, phone);
+						ps.setString(3, email);
+						ps.setString(4, address);
+						ps.setString(5, pancard);
+						ps.setString(6, sname);
+						ps.setString(7, cat);
+						ps.setString(8, scat);
+						ps.setString(9, gst);
+						ps.setString(10, password);
+						int a=ps.executeUpdate();
+						if(a>0) {
+							status="success";
+						}else {
+							status="failure";
+						}
+					}
+				}
+				catch(Exception e) {
+					e.printStackTrace();
+				}
+				
+				return status;
+		 }
 }
 

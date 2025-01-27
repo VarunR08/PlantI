@@ -108,6 +108,41 @@ public class register extends HttpServlet {
   	    	
   	    }
     	    
+    	  else if(request.getParameter("dsubmit") !=null)
+          {
+       	   String name=request.getParameter("name");
+				String phone=request.getParameter("phone");
+				String email=request.getParameter("email");
+				String address=request.getParameter("address");
+				String pancard=request.getParameter("pan");
+				String sname=request.getParameter("store");
+				String cat=request.getParameter("plantCategory");
+				String scat=request.getParameter("plantsubCategory");
+				String gst=request.getParameter("gst");
+				String password=request.getParameter("password");
+				String confirm=request.getParameter("confirm");
+				
+				if(password.equals(confirm)) {
+					
+					String status=reg.dsignup(name, phone, email, address, pancard, sname, cat, scat, gst, password);
+					if(status.equals("existed")) {
+						request.setAttribute("status", "Existed Record");
+						RequestDispatcher rd1=request.getRequestDispatcher("Dealersignup.jsp");
+						rd1.forward(request, response);
+					}
+					else if(status.equals("success")) {
+						request.setAttribute("status", "Successfully Registered");
+						RequestDispatcher rd=request.getRequestDispatcher("login.jsp");
+						rd.forward(request, response);
+					}
+					else if(status.equals("failure")) {
+						request.setAttribute("status", "Registration Failed");
+						RequestDispatcher rd = request.getRequestDispatcher("Dealersignup.jsp");
+						rd.forward(request, response);
+					}
+				}
+          }
+    	    
     	    
     	  else if(request.getParameter("productname") != null)
       	    {
