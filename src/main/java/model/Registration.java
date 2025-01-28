@@ -29,7 +29,8 @@ public class Registration {
     }
 
     public String login(String email, String pass) {
-        String status1 = "", id = "";
+        String status1 = "";
+		int id = 0;
         String name = "", emails = "";
 
         try {
@@ -40,13 +41,17 @@ public class Registration {
             rs = st.executeQuery("select * from users where mailid='" + email + "' and password='" + pass + "';");
             boolean b = rs.next();
             if (b == true) {
-                id = rs.getString("id");
+                id = rs.getInt("id");
                 name = rs.getString("name");
                 emails = rs.getString("mailid");
                 se.setAttribute("uname", name);
-                se.setAttribute("email", emails);
+                se.setAttribute("email", emails); 
                 se.setAttribute("id", id);
+                       if(id==1) {
+                    	   status1 = "admin";
+                }else {    
                 status1 = "success";
+                }
             } else {
                 status1 = "failure";
             }
@@ -56,6 +61,58 @@ public class Registration {
 
         return status1;
     }
+    public String Signup(String name,String phone, String address,String email,String password)
+	 {
+		 PreparedStatement ps=null;
+			String status="";
+			String query="SELECT * FROM users WHERE phone='"+phone + "'or mailid='"+email+"';";
+			try {
+				Statement st = null;
+				ResultSet rs = null;
+				st=con.createStatement();
+				rs=st.executeQuery(query);
+				boolean b = rs.next();
+				if(b) {
+					status="existed";
+				}
+				else {
+					ps=con.prepareStatement("insert into users values(0,?,?,?,?,?)");
+					ps.setString(1, name);
+					ps.setString(2, phone);
+					ps.setString(3, address);
+					ps.setString(4, email);
+					ps.setString(5, password);
+					int a=ps.executeUpdate();
+					if(a>0) {
+						status="success";
+					}else {
+						status="failure";
+					}
+				}
+			}
+			catch(Exception e) {
+				e.printStackTrace();
+			}
+			
+			return status;
+	 }
+    public boolean ForgotPassword(String mail, String pw) {
+		 PreparedStatement ps = null;
+		 String query = "UPDATE USERS SET PASSWORD =?WHERE MAILID =?";
+	     
+		 try {
+			ps = con.prepareStatement(query);
+				ps.setString(1, pw);
+				ps.setString(2, mail);
+			int res = ps.executeUpdate();
+				if(res > 0) {
+					return true;
+				}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	     return false;
+	 }
 
     
 	public List<Products> getProducts() {
@@ -317,13 +374,14 @@ public class Registration {
 			
 		}
 	 
-	 public ArrayList<Order> getorderinfocart(int oid) {
+	 public ArrayList<Order> getorderinfocart(int cid) {
 	    	Statement st = null;
 			   ResultSet rs = null;
 	        ArrayList<Order> al = new ArrayList<Order>();
 	        try {
 	            st = con.createStatement();
-	            String qry = ("select *  from cart where uid=" + se.getAttribute("id") + " and order_id = " + oid + ";");
+	            String qry = ("select *  from cart where c_id="+cid+"");
+	            
 	            rs = st.executeQuery(qry);
 	            while (rs.next()) {
 	                Order p = new Order();
@@ -375,7 +433,7 @@ public class Registration {
 		   ArrayList<Reviews> al = new ArrayList<Reviews>();
 		   try {
 			st=con.createStatement();
-			String query="SELECT * FROM REVIEW where uname="+ uname+" ;";
+			String query="SELECT * FROM `leafnow`.`review` ;";
 			rs=st.executeQuery(query);
 			while(rs.next()) {
 				Reviews re=new Reviews();

@@ -115,7 +115,7 @@
                         <%
                                 Registration s2 = new Registration(session);
     
-                                ArrayList<Order> ar1 = s2.getorderinfocart(s.getoid());
+                                ArrayList<Order> ar1 = s2.getorderinfocart(Integer.parseInt(s.getc_id()));
                                 Iterator<Order> itr1 = ar1.iterator();
                                 while (itr1.hasNext()) {
                                     Order s3 = itr1.next();

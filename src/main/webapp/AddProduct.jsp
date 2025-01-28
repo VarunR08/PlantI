@@ -33,7 +33,19 @@
   </style>
 </head>
 <body>
-<%@include file="Header.jsp"%>
+<header class="bg-dark py-3">
+        <div class="container d-flex justify-content-between align-items-center">
+            <h1 class="text-white">PlantI</h1>
+            <nav>
+                <a href="#" class="text-white text-decoration-none mx-2">Dashboard</a>
+                <a href="#" class="text-white text-decoration-none mx-2">Orders</a>
+                <a href="Manage.jsp" class="text-white text-decoration-none mx-2">Manage Plants</a>
+                <a href="#" class="text-white text-decoration-none mx-2">Customer Feedback</a>
+                <a href="AddProduct.jsp" class="text-white text-decoration-none mx-2">Add Product</a>
+                <a class="text-white text-decoration-none mx-2" href="register?logout=yes">Log Out</a>   
+            </nav>
+        </div>
+    </header>
  <% if (request.getAttribute("status") != null) {%>
        <div id="msg">  <%= request.getAttribute("status")%></div>
        <%}%>

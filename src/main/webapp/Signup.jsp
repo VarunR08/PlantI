@@ -1,4 +1,6 @@
-<%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+
 <!DOCTYPE html>
 <html>
    <head>
@@ -32,8 +34,8 @@
            }
 
 .form{
- width: 450px;
-    height: 400px;
+ width: 600px;
+    height: 700px;
     background: linear-gradient(to top,rgba(0,0,0,0.8)50%,rgba(0,0,0,0.8)50%);
        border-radius: 10px;
    
@@ -76,8 +78,7 @@
                 <a href="Home.jsp" class="text-white text-decoration-none mx-2">Home</a>
                 <a href="contact.jsp" class="text-white text-decoration-none mx-2">Contact</a>
                 <a href="History.jsp" class="text-white text-decoration-none mx-2">About Our History</a>
-                <a href="Signup.jsp" class="text-white text-decoration-none mx-2">SignUp</a>
-
+                 <a href="login.jsp" class="text-white text-decoration-none mx-2">Login</a>
             </nav>
         </div>
     </header>
@@ -87,25 +88,62 @@
            }, "Please enter the email format as abc@gmail.com");
 
            jQuery(document).ready(function($) {
-               $("#login").validate({
+               $("#signup").validate({
                    rules: {
+                	   name: {
+                           required: true
+                       },
+                	   phone: {
+                           required: true,
+                           minlength: 10,
+                           maxlength: 10,
+                           digits: true
+                       },
+                       address:{
+                    	   required:true
+                       }
                        email: {
                            required: true,
                            checkemail: true
                        },
-                       pw: {
+                       password: {
                            required: true,
-                           minlength: 6
+                           
                        },
+                       cpass: {
+                           required: true,
+                          
+                           equalTo: "#password"
+                       }
                    },
                    messages: {
+                	   name: {
+                           required: "Please enter your name"
+                       },
+                	   phone: {
+                           required: "Please enter your phone number",
+                           minlength: "Your phone number must be exactly 10 digits",
+                           maxlength: "Your phone number must be exactly 10 digits",
+                           digits: "Please enter a valid phone number"
+                       },
+                       address: {
+                           required: "Please enter your address"
+                       },
                        email: {
                            required: "Please enter the email.",
                        },
-                       pw: {
-                           required: "Please enter the password.",
-                           minlength: "Please enter the password greater than or equal to 6.",
+                       password: {
+                           required: "Please enter your password",
+                          
                        },
+                       cpass: {
+                           required: "Please confirm your password",
+                           equalTo: "Passwords do not match"
+                       }
+                   },
+                   submitHandler: function(form) {
+                       form.submit();
+                   }
                    }
                });
            });
@@ -121,23 +159,39 @@
        <div id="msg">  <%= request.getAttribute("status")%></div>
        <%}%>
 
-       <form method="POST" id="login" action="register" class="form">
+       <form method="POST" id="signup" action="register" class="form">
            <font color="white" size="4">
            <h1> Login  </h1>
            </font>
            <br>
            <div class="container ">
+            <div class="form-group col-md-4">
+                <label >Name</label>
+                <input type="text" class="form-control"  placeholder="Enter your name" name="name">
+            </div>
+            <div class="form-group col-md-4">
+                <label >phone</label>
+                <input type="text" class="form-control"  placeholder="Enter your phone number" name="phone">
+            </div>
+            <div class="form-group col-md-4">
+                <label >Adderss</label>
+                <input type="text" class="form-control"  placeholder="Enter your address" name="address">
+            </div>
                <div class="form-group col-md-4">
                    <label >Email address</label>
                    <input type="email" class="form-control" placeholder="Enter email"  name="email">
                </div>
                <div class="form-group col-md-4">
                    <label >Password</label>
-                   <input type="password" class="form-control"  placeholder="Enter Password" name="pw">
+                   <input type="password" class="form-control"  placeholder="Enter Password" name="password">
                </div>
-               <button type="submit" class="btn btn-primary" name="login">Submit</button>
+               <div class="form-group col-md-4">
+                <label >conform-Password</label>
+                <input type="password" class="form-control"  placeholder="Enter re- Password" name="cpass">
+            </div>
+               <button type="submit" class="btn btn-primary" name="csignup">Submit</button>
                <div style="text-align: center;  margin-top: 15px;">
-                   <a href="Forgot.jsp" style="color: white; ">Forgot password?</a> / <a href="changePass.jsp" style="color: white; ">Reset Password</a>
+                   <a href="forgot.jsp" style="color: white; ">Forgot password?</a> / <a href="changePass.jsp" style="color: white; ">Reset Password</a>
                </div>
            </div>
        </form>

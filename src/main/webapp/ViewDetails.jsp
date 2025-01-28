@@ -88,11 +88,11 @@
 
     <button type="submit" class="btn btn-primary" style="margin-top: 5%">Add to Cart</button>
 </form>
-                              <form action="register" method="post">
+                              <%-- <form action="register" method="post">
                              
                     <input type="hidden" class="btn btn-primary" name="book" value="<%=p.getPid() %>" > 
                     <input type="submit" class="btn btn-primary" value="Buy Now"  style="margin-top: 45%"> 
-                   </form>
+                   </form> --%>
                             </div>
         <br>
         <label class="desc"> Description: <%=p.getP_des() %></label>

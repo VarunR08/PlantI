@@ -38,7 +38,11 @@ public class register extends HttpServlet {
 
                    rd1.forward(request, response);
 
-               } else if (status.equals("failure")) {
+               } else if (status.equals("admin")) {
+                   RequestDispatcher rd1 = request.getRequestDispatcher("Dealerdashboard.jsp");
+                   rd1.forward(request, response);
+               }
+               else if (status.equals("failure")) {
                    request.setAttribute("status", "Login failed");
                    RequestDispatcher rd1 = request.getRequestDispatcher("login.jsp");
                    rd1.forward(request, response);
@@ -75,7 +79,7 @@ public class register extends HttpServlet {
     		  String subcategory=request.getParameter("plantsubCategory");
     		  String status=reg.addProduct(pname,url,desp,category,subcategory,price);
     		  
-    		  if (status.equals("success")) {
+    		  if (status.equals("Success")) {
     			  request.setAttribute("status", "Product Added Successfully");
                   RequestDispatcher rd1 = request.getRequestDispatcher("AddProduct.jsp");
                   rd1.forward(request, response);
@@ -171,7 +175,34 @@ public class register extends HttpServlet {
       	    		 RequestDispatcher rd1 = request.getRequestDispatcher("dashboard.jsp");
       	    		 rd1.forward(request, response);
       	    	}
-      	    	}
+      	    	}else if(request.getParameter("csignup")!=null)
+        	    {
+        	    	String name=request.getParameter("name");
+    				String phone=request.getParameter("phone");
+    				String address=request.getParameter("address");
+    				String email=request.getParameter("email");
+    				String password=request.getParameter("password");
+    				String cpass=request.getParameter("cpass");
+    				
+    				if(password.equals(cpass)) {
+    					String status = reg.Signup(name, phone, address, email, password);
+    					if(status.equals("existed")) {
+    						request.setAttribute("status", "Existed Record");
+    						RequestDispatcher rd1=request.getRequestDispatcher("Signup.jsp");
+    						rd1.forward(request, response);
+    					}
+    					else if(status.equals("success")) {
+    						request.setAttribute("status", "Successfully Registered");
+    						RequestDispatcher rd=request.getRequestDispatcher("login.jsp");
+    						rd.forward(request, response);
+    					}
+    					else if(status.equals("failure")) {
+    						request.setAttribute("status", "Registration Failed");
+    						RequestDispatcher rd = request.getRequestDispatcher("Signup.jsp");
+    						rd.forward(request, response);
+    					}
+    				}
+        	    }
     	    
                else if (request.getParameter("logout") != null) {
                    session.invalidate();
