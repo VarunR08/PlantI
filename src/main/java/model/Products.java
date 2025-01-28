@@ -6,6 +6,20 @@ public class Products {
  double price;
  String p_img;
  String p_des;
+ String cat;
+ String S_cat;
+public String getCat() {
+	return cat;
+}
+public void setCat(String cat) {
+	this.cat = cat;
+}
+public String getS_cat() {
+	return S_cat;
+}
+public void setS_cat(String s_cat) {
+	S_cat = s_cat;
+}
 public int getPid() {
 	return pid;
 }

@@ -1,5 +1,7 @@
 package model;
 
+import java.sql.Date;
+
 public class Order {
 	 int oid;
 	    String c_id;
@@ -11,8 +13,36 @@ public class Order {
 	    String address;
 	    String state;
 	    String city;
-	    
+	    String uname;
+	    Date date;
+	    int uid;
 
+
+		
+
+		public int getUid() {
+			return uid;
+		}
+
+		public void setUid(int uid) {
+			this.uid = uid;
+		}
+
+		public Date getDate() {
+			return date;
+		}
+
+		public void setDate(Date date) {
+			this.date = date;
+		}
+
+		public String getUname() {
+			return uname;
+		}
+
+		public void setUname(String uname) {
+			this.uname = uname;
+		}
 
 		public String getAddress() {
 			return address;

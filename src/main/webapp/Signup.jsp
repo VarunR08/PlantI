@@ -40,6 +40,10 @@
        border-radius: 10px;
    
 }
+.form h1{
+
+  
+}
 
 .form input{
     width:280px;
@@ -47,11 +51,7 @@
     background:transparent;
     position:relative;
     right:80px;
-  
-    
- 
 
-  
     color: white;
   
     
@@ -161,7 +161,7 @@
 
        <form method="POST" id="signup" action="register" class="form">
            <font color="white" size="4">
-           <h1> Login  </h1>
+           <h1> Sign up  </h1>
            </font>
            <br>
            <div class="container ">

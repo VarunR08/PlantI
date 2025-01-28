@@ -7,6 +7,8 @@ import java.util.List;
 
 
 
+
+
 public class Registration {
 
     private Connection con;
@@ -630,5 +632,201 @@ public class Registration {
 
 		        return status;
 		    }
+		 
+		 // Dealer [Varun]
+		 
+		  public List<Products> get_all_productinfo() {
+		        ArrayList<Products> productList = new ArrayList<>();
+		      
+		        Statement st = null;
+				   ResultSet rs = null;
+				   ArrayList<Reviews> al = new ArrayList<Reviews>();
+				   try {
+					st=con.createStatement();
+					 String query = "SELECT * FROM products"; 
+					rs=st.executeQuery(query);
+					while(rs.next()) {
+						Products product = new Products();
+			              product.setPid(rs.getInt("p_id"));
+			              product.setP_name(rs.getString("p_name"));
+			              product.setP_img(rs.getString("p_img"));
+			              product.setPrice(rs.getDouble("p_price"));
+			              product.setP_des(rs.getString("p_desc"));
+			              product.setCat(rs.getString("p_category"));
+			              product.setS_cat(rs.getString("p_subcategory"));
+			              productList.add(product);
+					}
+		        } catch (SQLException e) {
+		            e.printStackTrace();
+		        }
+
+		        return productList;
+		    }
+		  
+		  public boolean updateProductCost(int productId, double newCost) {
+		        
+		        PreparedStatement preparedStatement = null;
+		        try {
+		           
+		            String sql = "UPDATE products SET p_price = ? WHERE p_id = ?";
+		            preparedStatement = con.prepareStatement(sql);
+		            preparedStatement.setDouble(1, newCost);
+		            preparedStatement.setInt(2, productId);
+		            int rowsUpdated = preparedStatement.executeUpdate();
+		            return rowsUpdated > 0;
+		        } catch (SQLException e) {
+		            e.printStackTrace();
+		            return false;
+		        } finally {
+		            try {
+		                if (preparedStatement != null) preparedStatement.close();
+		                if (con != null) con.close();
+		            } catch (SQLException e) {
+		                e.printStackTrace();
+		            }
+		        }
+		    }
+		    public boolean deleteProduct(int productId) {
+		        String query = "DELETE FROM products WHERE p_id = ?";
+		        try (PreparedStatement stmt = con.prepareStatement(query)) {
+		            stmt.setInt(1, productId);
+		            int rowsAffected = stmt.executeUpdate();
+		            return rowsAffected > 0;
+		        } catch (SQLException e) {
+		            e.printStackTrace();
+		            return false;
+		        }
+		    }
+		    
+		    public List<Contact> feedback(){
+
+		    	Statement st = null;
+				   ResultSet rs = null;
+				   ArrayList<Contact> al = new ArrayList<Contact>();
+				   try {
+					st=con.createStatement();
+					String query="select * from contact";
+					rs=st.executeQuery(query);
+					while(rs.next()) {
+						Contact c=new Contact();
+						c.setId(rs.getInt(1));
+						c.setName(rs.getString(2));
+						c.setEmail(rs.getString(3));
+						c.setMessage(rs.getString(4));
+						al.add(c);
+					}
+				} catch (SQLException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();	
+		    }
+				return al;
+		  
 }
+		    public List<Order> totalorders(){
+
+		    	Statement st = null;
+				   ResultSet rs = null;
+				   ArrayList<Order> al = new ArrayList<Order>();
+				   try {
+					st=con.createStatement();
+					String query="select * from `leafnow`.`order`";
+					rs=st.executeQuery(query);
+					while(rs.next()) {
+						Order o=new Order();
+						o.setUname(rs.getString("uname"));
+						o.setc_cost(rs.getDouble("c_cost"));
+						o.setAddress(rs.getString("order_address"));
+						o.setCity(rs.getString("order_city"));
+						o.setState(rs.getString("oder_state"));
+						o.setDate(rs.getDate("date"));
+						o.setUid(rs.getInt("uid"));
+						o.setoid(rs.getInt("order_id"));
+						int id=(rs.getInt("c_id"));
+						o.setc_id(""+id+"");
+						al.add(o);
+					}
+				} catch (SQLException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();	
+		    }
+				return al;
+		  
+}
+		    
+		    public List<Cart> getcartorders(int cid){
+
+		    	Statement st = null;
+				   ResultSet rs = null;
+				   ArrayList<Cart> al = new ArrayList<Cart>();
+				   try {
+					st=con.createStatement();
+					String query="select * from `leafnow`.`cart`where c_id="+cid+"";
+					rs=st.executeQuery(query);
+					while(rs.next()) {
+						Cart c=new Cart();
+						c.setC_img(rs.getString("c_img"));
+						c.setC_name(rs.getString("c_name"));
+						al.add(c);
+					}
+				} catch (SQLException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();	
+		    }
+				return al;
+		  
+}
+		    public List<Order> getToporders(){
+
+		    	Statement st = null;
+				   ResultSet rs = null;
+				   ArrayList<Order> al = new ArrayList<Order>();
+				   try {
+					st=con.createStatement();
+					String query="select * from `leafnow`.`order` order by order_id desc limit 3;";
+					rs=st.executeQuery(query);
+					while(rs.next()) {
+						Order o=new Order();
+						o.setUname(rs.getString("uname"));
+						o.setc_cost(rs.getDouble("c_cost"));
+						o.setAddress(rs.getString("order_address"));
+						o.setCity(rs.getString("order_city"));
+						o.setState(rs.getString("oder_state"));
+						o.setDate(rs.getDate("date"));
+						o.setUid(rs.getInt("uid"));
+						o.setoid(rs.getInt("order_id"));
+						int id=(rs.getInt("c_id"));
+						o.setc_id(""+id+"");
+						al.add(o);
+					}
+				} catch (SQLException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();	
+		    }
+				return al;	  
+}
+		    public List<Cart> getcartToporders(int cid){
+
+		    	Statement st = null;
+				   ResultSet rs = null;
+				   ArrayList<Cart> al = new ArrayList<Cart>();
+				   try {
+					st=con.createStatement();
+					String query="select * from `leafnow`.`cart`where c_id="+cid+"";
+					rs=st.executeQuery(query);
+					while(rs.next()) {
+						Cart c=new Cart();
+						
+						c.setC_name(rs.getString("c_name"));
+						al.add(c);
+					}
+				} catch (SQLException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();	
+		    }
+				return al;
+		  
+}
+		    
+		    
+		    }
 
