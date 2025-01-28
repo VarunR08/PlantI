@@ -14,6 +14,7 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
+import model.Order;
 import model.Registration;
 
 
@@ -31,8 +32,16 @@ public class order extends HttpServlet {
                 String order_city = request.getParameter("city");
                 String order_state = request.getParameter("state");
                 double tcost = Double.parseDouble(request.getParameter("tcost"));
+                
+                Order o=new Order();
+                o.setAddress(order_address);
+                o.setCity(order_city);
+                o.setState(order_state);
+                o.setc_cost(tcost);
+               
             
-                String status = reg.orderdetails(order_address, order_city, order_state,tcost);
+                
+                String status = reg.orderdetails(o);
                 if (status.equals("success")) {
                     RequestDispatcher rd1 = request.getRequestDispatcher("myorder.jsp");
                     rd1.forward(request, response);

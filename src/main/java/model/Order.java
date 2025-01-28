@@ -8,7 +8,35 @@ public class Order {
 	    String c_name;
 	    double c_cost;
 	    String quantity;
+	    String address;
+	    String state;
+	    String city;
+	    
 
+
+		public String getAddress() {
+			return address;
+		}
+
+		public void setAddress(String address) {
+			this.address = address;
+		}
+
+		public String getState() {
+			return state;
+		}
+
+		public void setState(String state) {
+			this.state = state;
+		}
+
+		public String getCity() {
+			return city;
+		}
+
+		public void setCity(String city) {
+			this.city = city;
+		}
 
 		public String getp_image() {
 	        return p_image;

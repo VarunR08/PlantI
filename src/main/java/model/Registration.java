@@ -204,43 +204,49 @@ public class Registration {
         return u;
     }
 	
-	 public String orderdetails(String order_address, String order_city, String order_state, double tcost) {
-		 Statement st = null;
+	 public String orderdetails(Order o) {
 		 ResultSet rs = null;
 	        String status = "", c_id = "";
-	        int order_id = 0;
+            String query="Insert into `leafnow`.`order` ( order_address, order_city, oder_state, c_id, c_cost, uname, status, date, uid ) select ?,?,?,c_id,c_cost,?,?,now(),uid from cart where status='pending'";  
+	        PreparedStatement ps;
 	        try {
-	            
-	            PreparedStatement ps;
-	            st = (Statement) con.createStatement();
-	       //     ps = (PreparedStatement) con.prepareStatement("INSERT INTO  `leafnow`.`order` VALUES (0, ?, ?, ?,  group_concat(c_id), ?, '" + se.getAttribute("uname") + "', 'ordered', now(), '" + se.getAttribute("id") + "');");
-	            
-	            ps = (PreparedStatement) con.prepareStatement("insert into `leafnow`.`order` select 0,?, ?, ?, group_concat(c_id)," + tcost + ",'" + se.getAttribute("uname") + "','ordered',now()," + se.getAttribute("id") + " from cart where uid= " + se.getAttribute("id") + " and status='pending';");
-
-	            
-	            ps.setString(1, order_address);
-	            ps.setString(2, order_city);
-	            ps.setString(3, order_state);
-	          //  ps.setDouble(4, tcost);
+	            ps=con.prepareStatement(query);
+	            ps.setString(1, o.getAddress());
+	            ps.setString(2, o.getCity());
+	            ps.setString(3, o.getState());
+	            ps.setString(4, (String) se.getAttribute("uname"));
+	            ps.setString(5, "ordered");
 	            int a = ps.executeUpdate();
 	            if (a > 0) {
-	                status = "success";
-	            } else {
+	                String qry1 = "select * from `leafnow`.`order` where uid=" + se.getAttribute("id") + " and status='ordered' ";
+	                String qry = "update cart set status='ordered' where uid=" + se.getAttribute("id") + " and status='pending';";
+	            	rs = ps.executeQuery(qry1);
+	            	 while(rs.next())
+	            	 {
+	            		 c_id = rs.getString("c_id");
+				         int b = ps.executeUpdate(qry);
+				         if(b>0)
+				         {
+				        	 status = "success";
+				         }
+				         else {
+				                status = "failure";
+				            }
+	            	 }
+			             
+	               
+	            }  else {
 	                status = "failure";
-	            }                                                                                          //last order of my id with status=ordered,
-	            String qry1 = "select order_id,c_id from `leafnow`.`order` where uid=" + se.getAttribute("id") + " and status='ordered' order by order_id desc limit 1;";
-	            rs = st.executeQuery(qry1);
-	            while (rs.next()) {
-	                order_id = rs.getInt("order_id");
-	                c_id = rs.getString("c_id");
-	            }
-	            String qry = "update cart set status='ordered',order_id=" + order_id + " where c_id = " + c_id + " and uid=" + se.getAttribute("id") + " and status='pending';";
-	            int b = st.executeUpdate(qry);
+	            }                                                                                         
+	            
 	        } catch (Exception e) {
 	            e.printStackTrace();
 	        }
 	        return status;
 	   }
+	 
+	 
+	 
 	 public int deleteorder(int oid) {
 	        int status = 0;
 	        try {
@@ -389,6 +395,28 @@ public class Registration {
 		   
 	   }
 	 
+	 
+	 public boolean insertContact(String name, String email, String message) {
+		 PreparedStatement ps = null;
+		 String query = "INSERT INTO CONTACT VALUES(0,?,?,?)";
+		 int res = 0;
+		 try {
+			ps=con.prepareStatement(query);
+			ps.setString(1, name);
+			ps.setString(2, email);
+			ps.setString(3, message);
+			
+			res = ps.executeUpdate();
+			if(res > 0) {
+				return true;
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return false;
+		 
+	 }
+	 
 	 //kavana
 	 
 	 public String addtocart(int p_id, int qty) {
@@ -515,5 +543,34 @@ public class Registration {
 				
 				return status;
 		 }
+		 
+		 public String dlogin(String email, String password) {
+		        String status = "", id = "";
+		        String name = "", emails = "";
+
+		        try {
+		            Statement st = null;
+		            ResultSet rs = null;
+		            st = con.createStatement();
+
+		            rs = st.executeQuery("select * from dealer where mailid='" + email + "' and password='" + password + "';");
+		            boolean b = rs.next();
+		            if (b == true) {
+		                id = rs.getString("id");
+		                name = rs.getString("name");
+		                emails = rs.getString("mailid");
+		                se.setAttribute("uname", name);
+		                se.setAttribute("email", emails);
+		                se.setAttribute("id", id);
+		                status = "success";
+		            } else {
+		                status = "failure";
+		            }
+		        } catch (Exception e) {
+		            e.printStackTrace();
+		        }
+
+		        return status;
+		    }
 }
 

@@ -142,7 +142,25 @@ public class register extends HttpServlet {
 					}
 				}
           }
-    	    
+    	  else if(request.getParameter("dlsubmit") !=null) {
+    		  
+  			String email=request.getParameter("email");
+  			String password=request.getParameter("password");
+  			String status = reg.dlogin(email, password);
+              if (status.equals("success")) {
+
+                  RequestDispatcher rd1 = request.getRequestDispatcher("dashboard.jsp");
+
+                  rd1.forward(request, response);
+
+              } else if (status.equals("failure")) {
+                  request.setAttribute("status", "Login failed");
+                  RequestDispatcher rd1 = request.getRequestDispatcher("Dealerlogin.jsp");
+                  rd1.forward(request, response);
+              }
+  			
+  		  
+  	  }
     	    
     	  else if(request.getParameter("productname") != null)
       	    {

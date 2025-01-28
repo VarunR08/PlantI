@@ -1,4 +1,8 @@
- <%@page import="java.awt.event.ItemEvent"%>
+ <%@page import="java.util.List"%>
+<%@page import="model.Registration"%>
+<%@page import="model.User"%>
+<%@page import="com.mysql.cj.Session"%>
+<%@page import="java.awt.event.ItemEvent"%>
 <%@page import="model.Cart"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="java.util.Iterator"%>
@@ -54,12 +58,12 @@
 <body>
 <%@include file="Header.jsp" %>
     <div class="container">
-        <%
-            ArrayList<Cart> cartList = (ArrayList<Cart>) session.getAttribute("cartList");
-            int tcost = 0;
-
-            if (cartList != null && !cartList.isEmpty()) {
-        %>
+       
+        <%int tcost=0; %>
+         <%
+                Registration reg1 = new Registration(session);
+                User u = reg1.getInfo();%>
+       
             <h2>Your Cart</h2>
             <table class="table table-bordered">
                 <thead>
@@ -73,23 +77,41 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <%
+                   <%--  <%
                         for (Cart item : cartList) {
                             int itemTotalCost = item.getC_cost() * item.getQuantity();
                             tcost += itemTotalCost;
-                    %>
+                    %> --%>
+                   
+                     <%if(u!=null){ %>
+        
+        <%
+        
+        Registration reg=new Registration(session);
+       List <Cart> cart= reg.getcartinfo();
+       Iterator <Cart>itr= cart.iterator();
+       while(itr.hasNext()){
+    	   
+    	   Cart c=itr.next();
+    	   int itemcost= c.getC_cost()*c.getQuantity();
+    	   tcost+=itemcost;
+      
+        %>
+                    
+                    
+                    
                     <tr>
                         <td>
-                            <img src="<%= item.getC_img() %>" alt="<%= item.getC_name() %>" 
+                            <img src="<%=c.getC_img() %>" alt="<%=c.getC_name()  %>" 
                                  style="height: 80px; width: auto; border-radius: 10px;">
                         </td>
-                        <td><%= item.getC_name() %></td>
-                        <td>&#8377;<%= item.getC_cost() %></td>
-                        <td><%= item.getQuantity() %></td>
-                        <td>&#8377;<%= itemTotalCost %></td>
+                        <td><%= c.getC_name() %></td>
+                        <td>&#8377;<%= c.getC_cost() %></td>
+                        <td><%= c.getQuantity() %></td>
+                        <td>&#8377;<%= itemcost %></td>
                         <td>
                             <form action="removefromcart" method="post" style="display:inline;">
-                                <input type="hidden" name="cid" value="<%= item.getC_id() %>"/>
+                                <input type="hidden" name="cid" value="<%= c.getC_id() %>"/>
                                 <button type="submit" name="delete" class="btn btn-danger">
                                     <i class="fas fa-trash"></i> Remove
                                 </button>
@@ -97,6 +119,7 @@
                         </td>
                     </tr>
                    <% } %>
+                   <%} %>
                 </tbody>
             </table> 
             <div class="total-cost">Total: &#8377;<%= tcost %></div>
@@ -111,15 +134,16 @@
                    </form> --> 
                 <a href="dashboard.jsp" class="btn btn-primary" style="margin-left: 40px">Back</a>
             </div>
-            
+      <%--       
         <%		
             } else {
         %>
             <h2>Your cart is empty.</h2>
         <%
             }
-        %>
+        %> --%>
     </div>
+    <%session.removeAttribute("lastaddedpid"); %>
 </body>
 </html> 
 

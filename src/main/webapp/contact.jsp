@@ -7,8 +7,43 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Contact Us | Plant Store</title>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+
+<style>
+	.success{
+		color:white;
+		background-color: green; 
+		text-align: center;
+		height: 40px;
+		width: 350px;
+		margin-left: 600px;
+	}
+	
+	.failure{
+		color:white;
+		background-color: red; 
+		text-align: center;
+		height: 40px;
+		width: 350px;
+		margin-left: 600px;
+	}
+
+</style>
 </head>
 <body>
+
+<% String status = (String)request.getAttribute("status");
+	if(status!=null){
+%>
+
+	<h3 class = "success"><%=status %></h3>
+<%} %>
+
+<% String failure = (String)request.getAttribute("fail");
+	if(failure!=null){
+%>
+
+	<h3 class = "failure"><%=status %></h3>
+<%} %>
         
   <header class="bg-success text-white text-center py-4">
     <h1 class="text-white">PlantI</h1>
@@ -45,20 +80,20 @@
       <!-- Contact Form -->
       <div class="col-md-6">
         <h2>Send Us a Message</h2>
-        <form>
+        <form action= "contact" method = "post">
           <div class="mb-3">
             <label for="name" class="form-label">Name</label>
-            <input type="text" class="form-control" id="name" placeholder="Enter your name">
+            <input type="text" name = "name" class="form-control" id="name" placeholder="Enter your name">
           </div>
           <div class="mb-3">
             <label for="email" class="form-label">Email</label>
-            <input type="email" class="form-control" id="email" placeholder="Enter your email">
+            <input type="email" name = "email" class="form-control" id="email" placeholder="Enter your email">
           </div>
           <div class="mb-3">
             <label for="message" class="form-label">Message</label>
-            <textarea class="form-control" id="message" rows="5" placeholder="Write your message"></textarea>
+            <textarea class="form-control" name = "message" id="message" rows="5" placeholder="Write your message"></textarea>
           </div>
-          <button type="submit" class="btn btn-success w-100">Submit</button>
+          <button type="submit" name = "submit" class="btn btn-success w-100">Submit</button>
         </form>
       </div>
     </div>
@@ -71,4 +106,3 @@
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
-    

@@ -93,7 +93,7 @@
           <select class="form-select" id="plantCategory" name="plantCategory" required>
             <option value="" disabled selected>Select Category</option> 
             <option value="Fruits">Fruits</option>
-            <option value="Vegetables">Vegetables</option>
+            <option value="Vegetable">Vegetables</option>
             <option value="Others">Others</option>
           </select></div><br>
                     
