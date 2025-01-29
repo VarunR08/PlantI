@@ -3,14 +3,13 @@
 <!DOCTYPE html>
 <html>
    <head>
-       <title>Forgot Password</title>
+       <title>TODO supply a title</title>
        <meta charset="UTF-8">
        <meta name="viewport" content="width=device-width">
        <script type = "text/javascript" src = "https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.1/jquery.validate.min.js"></script>
        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" >
-       
-       <style type="text/css">
+ <style type="text/css">
  .main{
  background: url('https://i.pinimg.com/736x/bf/c6/ba/bfc6ba9f683ff1628dc87f0d05d21faa.jpg') no-repeat center center/cover;
             padding: 150px 0;
@@ -47,10 +46,11 @@
 }
  
  </style>
-       
    </head>
+   
    <body >
-       <header class="bg-dark py-3">
+   
+    <header class="bg-dark py-3">
         <div class="container d-flex justify-content-between align-items-center">
             <h1 class="text-white">PlantI</h1>
             <nav>
@@ -63,13 +63,14 @@
             </nav>
         </div>
     </header>
+   
        <script>
            jQuery.validator.addMethod("checkemail", function(value, element) {
                return /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/.test(value) || /^[0-9]{10}$/.test(value);
            }, "Please enter the email format as abc@gmail.com");
 
            jQuery(document).ready(function($) {
-               $("#forgot").validate({
+               $("#reset").validate({
                    rules: {
                        email: {
                            required: true,
@@ -111,8 +112,8 @@
                color: white;
            }*/
 
-           #msg
-          /*  {
+          /*  #msg
+           {
                background: green;
                color:black;
                border: 1px solid green;
@@ -128,34 +129,35 @@
 <div class="main">
    <center>
 
-       <form method="POST" id="forgot" action="ForgotPassword" class="form">
+       <% if (request.getAttribute("status") != null) {%>
+       <div id="msg">  <%= request.getAttribute("status")%></div>
+       <%}%>
+
+       <form method="POST"  action="changePass" class="form">
            <font color="white" size="4">
-           <h2> Forgot Password  </h2>
+           <h2 > Reset Password </h2>
            </font>
            <br>
            <div class="container ">
                <div class="form-group col-md-4">
-               <font color="white" size="3">
+                <font color="white" size="3">
                    <label >Email address</label>
-                     </font>
+                   </font>
                    <input type="email" class="form-control" placeholder="Enter email"  name="email">
-                     
                </div>
                <div class="form-group col-md-4">
-               <font color="white" size="3">
-                   <label >Password</label>
-                     </font>
-                   <input type="password" class="form-control" id="pw" placeholder="Enter Password" name="pw">
-                     
+                <font color="white" size="3">
+                   <label >Old Password</label>
+                   </font>
+                   <input type="password" class="form-control" id="pw" placeholder="Old  Password" name="opw">
                </div>
                <div class="form-group col-md-4">
-               <font color="white" size="3">
-                   <label >ConfirmPassword</label>
-                     </font>
-                   <input type="password" class="form-control"  placeholder="Re Enter Password" name="cpw">
-                    
+                <font color="white" size="3">
+                   <label >New Password</label>
+                   </font>
+                   <input type="password" class="form-control"  placeholder="Enter New Password" name="npw">
                </div>
-               <button type="submit" class="btn btn-success" name="forgotPass">Submit</button>
+               <button type="submit" class="btn btn-success" name="submit">Submit</button>
                <div style="text-align: center; margin-top: 15px;">
                   <!-- <a href="login.jsp">Login</a> -->
                </div>
@@ -164,5 +166,6 @@
 
    </center>
 </div>
-  <%@include file="footer.jsp"%>
+   <%@include file="footer.jsp"%>
 </body>
+</html>

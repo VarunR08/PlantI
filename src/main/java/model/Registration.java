@@ -115,6 +115,27 @@ public class Registration {
 		}
 	     return false;
 	 }
+    public String getPassword(String email,String oldPass) {
+		// TODO Auto-generated method stub
+		       String status = "";
+		       PreparedStatement ps = null;
+		       ResultSet rs = null;
+		       String query = "select * from users where mailid = ? and password= ? ";
+		       try {
+		           ps = con.prepareStatement(query);
+		           ps.setString(1, email);
+		           ps.setString(2, oldPass);
+		           rs = ps.executeQuery();
+		           if (rs.next()) {
+		               status = "success";
+		           } else {
+		               status = "failed";
+		           }
+		       } catch (SQLException e) {
+		           e.printStackTrace();
+		       }
+		       return status;
+		   }
 
     
 	public List<Products> getProducts() {

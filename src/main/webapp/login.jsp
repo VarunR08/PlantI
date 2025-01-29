@@ -135,9 +135,9 @@
                    <label >Password</label>
                    <input type="password" class="form-control"  placeholder="Enter Password" name="pw">
                </div>
-               <button type="submit" class="btn btn-primary" name="login">Submit</button>
+               <button type="submit" class="btn btn-success" name="login">Submit</button>
                <div style="text-align: center;  margin-top: 15px;">
-                   <a href="Forgot.jsp" style="color: white; ">Forgot password?</a> / <a href="changePass.jsp" style="color: white; ">Reset Password</a>
+                   <a href="Forget.jsp" style="color: white; ">Forgot password?</a> / <a href="changePassword.jsp" style="color: white; ">Reset Password</a>
                </div>
            </div>
        </form>

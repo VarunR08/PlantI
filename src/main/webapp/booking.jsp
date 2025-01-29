@@ -219,11 +219,12 @@
                 <h2><u>Delivery Address:</u></h2>
                 <input type="text" id="adr" name="address" placeholder="Complete address" required><br>
                 <input type="text" id="city" name="city" placeholder="Enter city" required><br>
-                <input type="text" id="state" name="state" placeholder="Enter state" required><br>
-                <input type="submit" name="submit" value="Confirm Order" class="btn"><br>
+                <input type="text" id="state" name="state" placeholder="Enter state" required><br><br>
+                <input type="submit" name="submit" value="Confirm Order" class="btn" style="background-color: lightgreen"><br>
                 <input type="hidden" name="tcost" value="<%= tcost %>">
             </form>
         </div>
+        <br><br><br>	
     <% } else { %>
         <p>Please log in to view the booking form.</p>
     <% } %>

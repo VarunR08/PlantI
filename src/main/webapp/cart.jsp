@@ -125,14 +125,14 @@
             <div class="total-cost">Total: &#8377;<%= tcost %></div>
             <div class="checkout-button">
                  
-                 <a href="booking.jsp" class="btn btn-primary">Proceed to Checkout</a>
+                 <a href="booking.jsp" class="btn btn-success">Proceed to Checkout</a>
           
                   <!-- <form action="register" method="post">
                              
                     <input type="hidden" class="btn btn-primary" name="book" value="1" > 
                     <input type="submit" class="btn btn-primary" value="Buy Now"  > 
                    </form> --> 
-                <a href="dashboard.jsp" class="btn btn-primary" style="margin-left: 40px">Back</a>
+                <a href="dashboard.jsp" class="btn btn-success" style="margin-left: 40px">Back</a>
             </div>
       <%--       
         <%		

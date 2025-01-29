@@ -86,7 +86,7 @@
     <input type="number" name="qty" value="1" min="1" style="width:80%" >
     <br>
 
-    <button type="submit" class="btn btn-primary" style="margin-top: 5%">Add to Cart</button>
+    <button type="submit" class="btn btn-success" style="margin-top: 5%">Add to Cart</button>
 </form>
                               <%-- <form action="register" method="post">
                              

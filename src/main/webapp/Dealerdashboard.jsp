@@ -117,19 +117,19 @@ button {
             <tbody>
             
          <% List <Order> ol=reg.getToporders(); 
-                            Iterator<Order> itr2 = ar.iterator();
-                            while (itr.hasNext()) {
+                            Iterator<Order> itr2 = ol.iterator();
+                            while (itr2.hasNext()) {
                                 Order o= itr2.next();
                                 int c_id=Integer.parseInt(o.getc_id());
                                 List<Cart> cr=reg.getcartToporders(c_id);
                                 Iterator<Cart> itr3 = cr.iterator();
-                                while (itr1.hasNext()){
+                                while (itr3.hasNext()){
                                 	Cart c=itr3.next();
                             %>
               <tr>
-              <td><%=o.getc_id() %></td>
-                <td><%=o.getUname() %></td>
-                <td><%=c.getC_name() %></td>
+              <td><%=o.getUid() %></td>
+                <td><%=o.getUname().toUpperCase() %></td>
+                <td><%=c.getC_name().toUpperCase() %></td>
                 <td><%=o.getc_cost() %></td>
                 <td><%=o.getDate() %></td>
               </tr>

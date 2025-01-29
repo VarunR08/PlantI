@@ -138,7 +138,7 @@
             <input type="text" name="productname" class="form-control" placeholder="search for products" required>
         </div>
         <br>
-        <button type="submit" class="btn" name="submit1" style="border:1px solid green; background-color: lightgreen">Search</button>
+        <button type="submit" class="btn btn-success" name="submit1" style="border:1px solid green; ">Search</button>
     </form>
    
                     </div>
@@ -168,12 +168,12 @@ List<Products> products = (List<Products>) session.getAttribute("filter1");
  <input type="hidden" name="p_id" value="<%= p.getPid() %>">
     <input type="number" name="qty" value="1" min="1" style="width:80%" >
 
-    <button type="submit" class="btn btn-primary" style="margin-top: 5%">Add to Cart</button>
+    <button type="submit" class="btn btn-success" style="margin-top: 5%">Add to Cart</button>
 </form>
                               <form action="register" method="post">
                              
                     <input type="hidden" class="btn btn-primary " name="pid" value="<%=p.getPid() %>" > 
-                    <input type="submit" class="btn btn-primary " value="view Details" style="margin-top: 35%"> 
+                    <input type="submit" class="btn btn-success " value="view Details" style="margin-top: 35%"> 
                    
                    <%-- <input type="hidden"  name="userid" value="<%=p.getPid()%>"/>
                                    <input type="submit" class="btn btn-primary btn-sm" value="View Details" /> --%>
@@ -216,12 +216,12 @@ List<Products> products = (List<Products>) session.getAttribute("filter1");
    <input type="hidden" name="p_id" value="<%= p.getPid() %>">
     <input type="number" name="qty" value="1" min="1" style="width:80%" >
 
-    <button type="submit" class="btn btn-primary" style="margin-top: 5%">Add to Cart</button>
+    <button type="submit" class="btn btn-success" style="margin-top: 5%">Add to Cart</button>
 </form>
                               <form action="register" method="post">
                              
                     <input type="hidden" class="btn btn-primary " name="pid" value="<%=p.getPid() %>" > 
-                    <input type="submit" class="btn btn-primary " value="view Details" style="margin-top: 35%">  
+                    <input type="submit" class="btn btn-success " value="view Details" style="margin-top: 35%">  
                    </form>
                    <%-- <input type="hidden"  name="userid" value="<%=p.getPid()%>"/>
                                    <input type="submit" class="btn btn-primary btn-sm" value="View Details" /> --%>
@@ -262,12 +262,12 @@ List<Products> products = (List<Products>) session.getAttribute("filter1");
     <input type="hidden" name="p_id" value="<%= p.getPid() %>">
     <input type="number" name="qty" value="1" min="1" style="width:80%" >
 
-    <button type="submit" class="btn btn-primary" style="margin-top: 5%">Add to Cart</button>
+    <button type="submit" class="btn btn-success " style="margin-top: 5%;">Add to Cart</button>
 </form>
                               <form action="register" method="post">
                              
                     <input type="hidden" class="btn btn-primary " name="pid" value="<%=p.getPid() %>" > 
-                    <input type="submit" class="btn btn-primary " value="view Details" style="margin-top: 35%"> 
+                    <input type="submit" class="btn btn-success " value="view Details" style="margin-top: 35%"> 
                    
                    <%-- <input type="hidden"  name="userid" value="<%=p.getPid()%>"/>
                                    <input type="submit" class="btn btn-primary btn-sm" value="View Details" /> --%>
